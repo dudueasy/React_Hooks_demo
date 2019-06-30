@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {Example} from './Example';
+import {ExampleRenderProps} from './ExampleRenderProps';
+import {Clock} from './Clock';
 
 function App() {
+  const [showClock, toggleClock] = useState(true);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>
+        Welcome
+      </h1>
+      <Example/>
+      <ExampleRenderProps render={(text) => (<p>{text} </p>)}/>
+
+      <p> These are clock demos below: </p>
+
+      <div>
+        <button onClick={() => {toggleClock((prev) => (!prev)); }}>
+          hide/show clock
+        </button>
+        {
+          showClock ? <Clock/> : null
+        }
+      </div>
     </div>
   );
 }
